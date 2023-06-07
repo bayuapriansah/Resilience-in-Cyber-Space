@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link href="output.css" rel="stylesheet">
+    <style>
+        /* Put any custom styles here */
+        .path {
+            stroke: red;
+            stroke-width: 2;
+        }
+
+        .arrow {
+            width: 30px;
+            height: 30px;
+            background-color: green;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+</head>
+<body class="h-screen bg-gray-200 flex items-center justify-center">
+    <svg class="path" id="path"></svg>
+    <div class="arrow cursor-pointer hover:bg-blue-500" id="arrow"></div>
+
+    <script>
+        gsap.registerPlugin(MotionPathPlugin);
+
+        // Define your path here. This is a simple curly path.
+        let path = "M0,0 Q100,50 200,0 Q300,-50 400,0 Q500,50 600,0";
+
+        // Draw the path (optional)
+        gsap.to("#path", {attr: {d: path}, duration: 5, ease: "power1.inOut"});
+
+        // Move the arrow along the path
+        document.querySelector("#arrow").addEventListener("click", function() {
+            gsap.to("#arrow", {motionPath: path, duration: 5, ease: "power1.inOut"});
+        });
+    </script>
+</body>
+</html>
