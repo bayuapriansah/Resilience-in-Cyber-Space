@@ -3,16 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simulated Internship</title>
+    <title>Resilence</title>
     <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="styless.css" rel="stylesheet">
+    <link href="output.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Comfortaa';
             font-size: 22px;
+            animation: fadein 4s; /* Here's your fade-in effect */
         }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
         
         @keyframes slide-up {
           0% {
@@ -36,7 +44,7 @@
         .icon {
           position: absolute;
           left: 21px;
-          top: 12px;
+          top: 16px;
         }
 
         .input-field {
@@ -46,31 +54,90 @@
 
     </style>
 </head>
-<body class="h-screen flex items-center justify-center">
+<body class="h-screen flex items-center justify-center fadeIn">
   <main class="w-full max-w-full-xl mx-auto px-4">
       <div class="bg-white rounded px-8 pb-8 mb-4 flex flex-col items-center justify-center text-center">
           <h1 class="text2xl text-5xl font-bold">Help us know you better!</h1>
           <p class="xl:text-xl px-4 py-4 w-full max-w-3xl mx-auto mb-10">Note: The details do not have to be your actual<br>information nothing will be stored on our side!</p>
           <div class="input-icon w-full max-w-2xl">
               <i class="fa-regular icon fa-envelope text-blue-600"></i>
-              <input type="text" id="input-group-email" class="input-field text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-8" placeholder="Enter your Email Address">
+              <input type="text" id="input-group-email" class="input-field text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-4" placeholder="Enter your Email Address">
+              <div id="email_error" class="text-red-500 text-sm mb-4"></div>
           </div>
           
           <div class="input-icon w-full max-w-2xl">
               <i class="fa-regular icon fa-user text-blue-600"></i>
-              <input type="text" id="input-group-name" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-8" placeholder="Enter your Name">
+              <input type="text" id="input-group-name" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-4" placeholder="Enter your Name">
+              <div id="name_error" class="text-red-500 text-sm mb-4"></div>
           </div>
 
           <div class="input-icon w-full max-w-2xl">
               <i class="fa-solid icon fa-lock text-blue-600"></i>
-              <input type="password" id="input_password" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-8" placeholder="Set a Password">
+              <input type="password" id="input_password" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-4" placeholder="Set a Password">
+              <div id="password_error" class="text-red-500 text-sm mb-4"></div>
           </div>
-          <a href="next2.html" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</a>
+
+          <form id="myForm">
+            <!-- Your input fields here -->
+            <button type="submit" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</button>
+          </form>
+          
           <img class="fixed bottom-0 left-0 max-w-full h-25 mx-auto object-scale-down transition-all transform ease-out duration-500 translate-y-full opacity-0 slide-up" src="image/footer.png" alt="footer_image">
 
       </div>
   </main>
   <script src="node_modules/flowbite/dist/flowbite.js"></script>
-</body>
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
+      var email = document.getElementById('input-group-email').value;
+      var emailError = document.getElementById('email_error');
+
+      var name = document.getElementById('input-group-name').value;
+      var nameError = document.getElementById('name_error');
+
+      var password = document.getElementById('input_password').value;
+      var passwordError = document.getElementById('password_error');
+
+      // Reset error messages
+      nameError.textContent = '';
+      emailError.textContent = '';
+      passwordError.textContent = '';
+
+      var hasError = false;
+
+      if (!name) {
+          nameError.textContent = 'Please enter your name';
+          hasError = true;
+      }
+
+      if (!email) {
+          emailError.textContent = 'Please enter your email';
+          hasError = true;
+      } else {
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+              emailError.textContent = 'Please enter a valid email';
+              hasError = true;
+          }
+      }
+
+      if (!password) {
+          passwordError.textContent = 'Please enter your password';
+          hasError = true;
+      }
+
+      if (hasError) {
+        return;
+      }
+
+      sessionStorage.setItem('name', name);
+      sessionStorage.setItem('email', email);
+      sessionStorage.setItem('password', password);
+
+      window.location.href = 'next2.html';
+    });
+  </script>
+</body>
 </html>

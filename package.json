@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8",
     "autoprefixer": "^10.4.14",
     "flowbite": "^1.6.5",
     "postcss": "^8.4.24",

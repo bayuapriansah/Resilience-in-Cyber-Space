@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulated Internship</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            animation: fadein 4s; /* Here's your fade-in effect */
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .next-image {
+            position: fixed;
+            bottom: 67px;
+            right: 68px;
+            z-index: 3;
+            opacity: 0; /* Initially make the next image invisible */
+            transition: opacity 2s ease-in-out; /* Smooth transition when the next image appears */
+        }
+        .input-icon {
+          position: relative;
+        }
+
+        .icon {
+          position: absolute;
+          left: 21px;
+          top: 16px;
+        }
+
+        .input-field {
+          padding-left: 30px;
+          /* your other styles go here */
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center fadein">
+    <main class="w-full max-w-full-xl mx-auto px-4">
+        <div class="flex flex-col items-center justify-center text-center">
+          <h1 class="text-1xl max-w-lg font-bold">Reset your password!</h1>
+          <p class="text-1lg pl-8 py-4 w-full max-w-xl">Change your password to something different from the one you set up before! Remember the standards for a good password from “Risk in Cyber space”? 
+            <br>
+            <br>
+            Use at least 8 digits, with a mix of upper and lower case letters, numbers and special characters! Also make sure that you can remember the password!</p>
+            <div class="input-icon w-full max-w-2xl">
+                <i class="fa-solid icon fa-lock text-blue-600"></i>
+                <input type="password" id="input_password" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-4" placeholder="Set a Password">
+                <div id="password_error" class="text-red-500 text-sm mb-4"></div>
+            </div>
+            <div class="input-icon w-full max-w-2xl">
+                <i class="fa-solid icon fa-lock text-blue-600"></i>
+                <input type="password" id="input_password_again" class="text-center bg-gray-50 border border-gray-300 text-gray-900 md:text-2xl rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full max-w-2xl p-2.5 shadow-lg mb-4" placeholder="Type Password Again">
+                <div id="password_match_error" class="text-red-500 text-sm mb-4"></div>
+            </div>
+      </div>
+  </main>
+<form id="myForm">
+    <a type="submit" id="nextLink" class="disabled" href="#"> <!-- Set href to "#" initially -->
+        <img class="next-image mx-auto w-16" src="image/next.svg" alt="Next">
+    </a>
+</form>
+<script src="node_modules/flowbite/dist/flowbite.js"></script>
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.next-image').css('opacity', '1'); /* Make the next image visible */
+        }, 500);
+        // Your code here
+        var passwordInput = $('#input_password');
+        var passwordAgainInput = $('#input_password_again');
+        var passwordError = $('#password_error');
+        var passwordMatchError = $('#password_match_error');
+        var nextLink = $('#nextLink');
+
+        function validatePassword() {
+            var password = passwordInput.val();
+            var passwordAgain = passwordAgainInput.val();
+
+            // Check password length and if it contains at least one lowercase, one uppercase, one number, and one special character
+            if (
+                password.length < 8 ||
+                !/[a-z]/.test(password) ||
+                !/[A-Z]/.test(password) ||
+                !/[0-9]/.test(password) ||
+                !/[^a-zA-Z0-9]/.test(password)
+            ) {
+                passwordError.text('Your password must contain at least 8 characters, including uppercase, lowercase, number, and special character.');
+                nextLink.addClass('disabled');
+                nextLink.attr('href', '#'); // Set href to "#" if passwords do not match
+            } else {
+                passwordError.text('');
+                if (password !== passwordAgain) {
+                    passwordMatchError.text('The two passwords do not match.');
+                    nextLink.addClass('disabled');
+                    nextLink.attr('href', '#'); // Set href to "#" if passwords do not match
+                } else {
+                    passwordMatchError.text('');
+                    nextLink.removeClass('disabled');
+                    nextLink.attr('href', 'start3.html'); // Set actual destination href if passwords match
+                    sessionStorage.setItem('password', password);
+                }
+            }
+        }
+        passwordInput.on('input', validatePassword);
+        passwordAgainInput.on('input', validatePassword);
+    });
+</script>
+</body>
+</html>

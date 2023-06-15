@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resilence</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            animation: fadein 4s; /* Here's your fade-in effect */
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        
+        @keyframes slide-left {
+          0% {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        .slide-left {
+          animation: slide-left 1s forwards;
+        }
+
+    </style>
+</head>
+<body class="h-screen flex items-center justify-start fadeIn">
+    <main class="w-full max-w-full-xl px-4 slide-left">
+        <div class="flex flex-col items-start justify-start text-start">
+          <h1 class="text-4xl pl-8 max-w-5xl font-bold mb-4 mt-10 pt-10">Congratulations! You’re now a digital defender!</h1>
+          <p class="text-2xl pl-8 py-4 w-full max-w-4xl">Today we learned:</p>
+          <div class="pl-8">
+          <ul class="list-disc w-full max-w-4xl px-4">
+            <li class="text-xl">What exists to protect you and how do they work?</li>
+            <li class="text-xl">Steps to protect yourself </li>
+            <li class="text-xl">Types of multi-factor authentication</li>
+            <li class="text-xl">What to do when data is compromised?</li>
+          </ul>
+        </div>
+        <img class="max-w-lg mx-auto object-scale-down pb-10 pt-10" src="image/policia.svg" alt="policia">
+          <!-- <div class="pl-8">
+            <a href="next4.html" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</a>
+          </div> -->
+            
+      </div>
+  </main>
+
+  <script src="node_modules/flowbite/dist/flowbite.js"></script>
+</body>
+</html>

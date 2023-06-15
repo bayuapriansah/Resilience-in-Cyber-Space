@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resilence</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            animation: fadein 4s; /* Here's your fade-in effect */
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        
+        @keyframes slide-left {
+          0% {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        .slide-left {
+          animation: slide-left 1s forwards;
+        }
+        
+        /* Added CSS for the SVG */
+        #svg-background {
+            position: fixed;
+            top: 15%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+    <style>
+    .captcha {
+      background-color:#f9f9f9;
+      border:2px solid #d3d3d3;
+      border-radius:5px;
+      color:#4c4a4b;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    @media screen and (max-width: 500px) {
+      .captcha {
+        flex-direction:column;
+      }
+      .text {
+        margin:.5em!important;
+        text-align:center;
+      }
+      .logo {
+        align-self: center!important;
+      }
+      .spinner {
+        margin:2em .5em .5em .5em!important;
+      }
+    }
+
+    .text {
+      font-size:1.75em;
+      font-weight:500;
+      margin-right:1em;
+    }
+    .spinner {
+      position:relative;
+      width:2em;
+      height:2em;
+      display:flex;
+      margin:2em 1em;
+      align-items:center;
+      justify-content:center;
+    }
+    input[type="checkbox"] { position: absolute; opacity: 0; z-index: -1; }
+    input[type="checkbox"]+.checkmark {
+      display:inline-block;
+      width:2em;
+      height:2em;
+      background-color:#fcfcfc;
+      border:2.5px solid #c3c3c3;
+      border-radius:3px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor: pointer;
+    }
+    input[type="checkbox"]+.checkmark span {
+      content:'';
+      position:relative;/*
+      position:absolute;
+      border-bottom:3px solid;
+      border-right:3px solid;
+      border-color:#029f56;*/
+      margin-top:-3px;
+      transform:rotate(45deg);
+      width:.75em;
+      height:1.2em;
+      opacity:0;
+    }
+    input[type="checkbox"]+.checkmark>span:after {
+      content:'';
+      position:absolute;
+      display:block;
+      height:3px;
+      bottom:0;left:0;
+      background-color:#029f56;
+    }
+    input[type="checkbox"]+.checkmark>span:before {
+      content:'';
+      position:absolute;
+      display:block;
+      width:3px;
+      bottom:0;right:0;
+      background-color:#029f56;
+    }
+    input[type="checkbox"]:checked+.checkmark { 
+      animation:2s spin forwards;
+    }
+    input[type="checkbox"]:checked+.checkmark>span { 
+      animation:1s fadein 1.9s forwards;
+    }
+    input[type="checkbox"]:checked+.checkmark>span:after {animation:.3s bottomslide 2s forwards;}
+    input[type="checkbox"]:checked+.checkmark>span:before {animation:.5s rightslide 2.2s forwards;}
+    @keyframes fadein {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }
+    @keyframes bottomslide {
+      0% {width:0;}
+      100% {width:100%;}
+    }
+    @keyframes rightslide {
+      0% {height:0;}
+      100% {height:100%;}
+    }
+    .logo {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      height:100%;
+      align-self:flex-end;
+      margin:0.5em 1em;
+    }
+    .logo img {
+      height:2em;
+      width:2em;
+    }
+    .logo p {
+      color:#9d9ba7;
+      margin:0;
+      font-size:1em;
+      font-weight:700;
+      margin:.4em 0 .2em 0;
+    }
+    .logo small {
+      color:#9d9ba7;
+      margin:0;
+      font-size:.8em;
+    }
+    @keyframes spin {
+      10% {
+        width:0;
+        height:0;
+        border-width:6px;
+      }
+      30% {
+        width:0;
+        height:0;
+        border-radius:50%;
+        border-width:1em;
+        transform: rotate(0deg);
+        border-color:rgb(199,218,245);
+      }
+      50% {
+        width:2em;
+        height:2em;
+        border-radius:50%;
+        border-width:4px;
+        border-color:rgb(199,218,245);
+        border-right-color:rgb(89,152,239);
+      }
+      70% {
+        border-width:4px;
+        border-color:rgb(199,218,245);
+        border-right-color:rgb(89,152,239);
+      }
+      90% {
+        border-width:4px;
+      }
+      100% {
+        width:2em;
+        height:2em;
+        border-radius:50%;
+        transform: rotate(720deg);
+        border-color:transparent;
+      }
+    }
+    ::selection {
+      background-color:transparent;
+      color:teal;
+    }
+    ::-moz-selection {
+      background-color:transparent;
+      color:teal;
+    }
+    </style>
+</head>
+<div id="trailContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;z-index: 1;"></div>
+<body class="h-screen flex items-center justify-start fadeIn">
+    <main class="w-full max-w-full-xl px-4 slide-left">
+      <div class="flex flex-col items-start justify-start text-start">
+        <h1 id="title" class="text-5xl pl-8 max-w-5xl font-bold">What exists to protect you?</h1>
+        <p id="description" class="text-2xl pl-8 py-4 w-full max-w-4xl mb-10">You might have come across reCAPTCHA or CAPTCHA authentication. The little puzzle like things that ask you to either type what’s written, select which images have the object mentioned or even just tick a box, but do you know how it works? Try clicking on the tick box and see what happens!</p>
+        <svg id="svg-background" width="1366" height="356" viewBox="0 0 1366 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-1905 350.186C-1655.5 350.186 -1542.5 238.5 -1261.5 238.5C-873.628 238.5 -656.714 351.088 -377.5 349C-40.2168 346.478 39 244.5 469 244.5C899 244.5 1046.03 5.49993 1344.5 5.5C1778.03 5.5001 1909.27 206.431 2349 178.163C2600.76 161.978 2983 37 3447.4 178.163C3807.85 287.727 4371.5 328.5 4796 328.5" stroke="#98B9FF" stroke-width="10"/>
+          <a href="next5.html" id="buttonLink">
+            <svg x="1233" y="-60" width="133" height="133" viewBox="0 0 133 133" fill="none">
+              <rect width="133" height="133" rx="66.5" fill="white"/>
+              <path d="M-2.90681e-06 66.5C-2.3319e-06 79.6524 3.90015 92.5095 11.2073 103.445C18.5144 114.381 28.9003 122.905 41.0515 127.938C53.2028 132.971 66.5738 134.288 79.4735 131.722C92.3732 129.156 104.222 122.823 113.523 113.523C122.823 104.222 129.156 92.3732 131.722 79.4735C134.288 66.5737 132.971 53.2028 127.938 41.0515C122.905 28.9003 114.381 18.5144 103.445 11.2073C92.5095 3.90014 79.6524 -3.48172e-06 66.5 -2.90681e-06C48.8688 0.0186136 31.9651 7.03082 19.498 19.498C7.03082 31.9651 0.0186152 48.8688 -2.90681e-06 66.5ZM75.2345 42.4193L95.696 62.8808C96.1717 63.3559 96.549 63.9201 96.8064 64.5411C97.0638 65.1621 97.1963 65.8277 97.1963 66.5C97.1963 67.1722 97.0638 67.8379 96.8064 68.4589C96.549 69.0799 96.1717 69.644 95.696 70.1191L75.2345 90.5807C74.2746 91.5405 72.9728 92.0797 71.6154 92.0797C70.2579 92.0797 68.9561 91.5405 67.9962 90.5807C67.0364 89.6208 66.4971 88.319 66.4971 86.9615C66.4971 85.6041 67.0364 84.3022 67.9962 83.3424L79.7296 71.6154L40.9231 71.6154C39.5664 71.6154 38.2653 71.0764 37.3059 70.1171C36.3466 69.1578 35.8077 67.8567 35.8077 66.5C35.8077 65.1433 36.3466 63.8422 37.3059 62.8829C38.2653 61.9235 39.5664 61.3846 40.9231 61.3846L79.7296 61.3846L67.9962 49.6576C67.0364 48.6977 66.4971 47.3959 66.4971 46.0384C66.4971 44.681 67.0364 43.3792 67.9962 42.4193C68.9561 41.4595 70.2579 40.9202 71.6154 40.9202C72.9728 40.9202 74.2746 41.4595 75.2345 42.4193Z" fill="#5379F6"/>
+            </svg>
+          </a>
+        </svg>
+
+        <div class="px-4" style="z-index: 0;">
+          <div class="captcha">
+            <div class="spinner">
+              <label for="captchaCheckbox">
+                <input type="checkbox" id="captchaCheckbox">
+                <span class="checkmark"><span>&nbsp;</span></span>
+              </label>
+            </div>
+            <div class="text">
+              I'm not a robot
+            </div>
+            <div class="logo">
+              <img src="https://forum.nox.tv/core/index.php?media/9-recaptcha-png/"/>
+              <p>reCAPTCHA</p>
+              <small>Privacy - Terms</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="node_modules/flowbite/dist/flowbite.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $('#captchaCheckbox').click(function() {
+        $('#title').text("Notice the trail?");
+        $('#description').text("When you click on a button as a human, you don’t just click it, you move your cursor and then click a button on your mouse or trackpad, this is how you as a human do it. But a bot cannot replicate these movements, which is what reCAPTCHA notices, and is able to detect that a human is the one accessing the digital space, whether its a website or your account!");
+      });
+
+      $('#buttonLink').click(function(e) {
+        e.preventDefault();
+        $('#captchaCheckbox').prop('checked', true).change();
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+          var trailSize = 15; // The size of the trail element
+          var trailColor = '#000'; // The color of the trail element
+
+          $(document).on('mousemove', function(e) {
+          var trailElement = $('<div>');
+          trailElement.css({
+              position: 'fixed',  // Changed from absolute to fixed
+              background: trailColor,
+              width: trailSize + 'px',
+              height: trailSize + 'px',
+              top: (e.clientY - trailSize / 2) + 'px',  // Using clientY instead of pageY
+              left: (e.clientX - trailSize / 2) + 'px',  // Using clientX instead of pageX
+              borderRadius: '50%',
+              pointerEvents: 'none' // Make sure the trail doesn't interfere with other elements
+          });
+          $('#trailContainer').append(trailElement);
+      });
+
+          $('a[href="next5.html"]').click(function(e) {
+              e.preventDefault();
+              $('#trailContainer').empty();
+              window.location.href = 'next5.html';
+          });
+      });
+    </script>
+</body>
+</html>

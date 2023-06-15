@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulated Internship</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            animation: fadein 4s; /* Here's your fade-in effect */
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        
+        @keyframes slide-up {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .slide-up {
+          animation: slide-up 1s forwards;
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center slide-up">
+    <main class="w-full max-w-full-xl mx-auto px-4">
+        <div class="flex flex-col items-center justify-center text-center">
+            <img class="max-w-lg mx-auto object-scale-down pb-10" src="image/womanpass.svg" alt="hacker">
+            <h1 class="text-5xl w-full max-w-4xl font-bold pb-10">Let’s see if you know how to keep yourself protected! </h1>
+          <a href="go1.html" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</a>
+      </div>
+  </main>
+  <script src="node_modules/flowbite/dist/flowbite.js"></script>
+</body>
+</html>

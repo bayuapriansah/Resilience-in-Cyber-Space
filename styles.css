@@ -3,3 +3,13 @@
 @import 'tailwindcss/utilities';
 
 /* Your other CSS styles go here */
+@layer base {
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  
+    body.fadeIn {
+      animation: fadeIn 2s ease-in-out;
+    }
+  }

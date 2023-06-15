@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resilence</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            animation: fadein 4s; /* Here's your fade-in effect */
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        
+        @keyframes slide-left {
+          0% {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        .slide-left {
+          animation: slide-left 1s forwards;
+        }
+
+        /* Added CSS for the SVG */
+        #svg-background {
+            position: fixed;
+            top: 25%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-start fadeIn">
+    <main class="w-full max-w-full-xl px-4 slide-left">
+        <div class="flex flex-col items-start justify-start text-start">
+          <h1 class="text-5xl pl-8 max-w-5xl font-bold">Now that we know the risks, how can we prevent these?</h1>
+          <p class="text-3xl pl-8 py-4 w-full max-w-4xl mb-10">These risks can be damaging and sometimes difficult to completely prevent! But good news is that there are ways for you to make it much more difficult for anyone else to attack your data, compromising it much more. These may be tedious, but are important safety precautions for you to take to ensure that your data is protected as much as possible from threats!</p>
+          <!-- <div class="pl-8">
+            <a href="next4.html" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</a>
+          </div> -->
+          <svg id="svg-background" width="1366" height="356" viewBox="0 0 1366 356" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-539 350.186C-289.5 350.186 -176.5 238.5 104.5 238.5C492.372 238.5 709.286 351.088 988.5 349C1325.78 346.478 1405 244.5 1835 244.5C2265 244.5 2412.03 5.49993 2710.5 5.5C3144.03 5.5001 3275.27 206.431 3715 178.163C3966.76 161.978 4349 37 4813.4 178.163C5173.85 287.727 5737.5 328.5 6162 328.5" stroke="#98B9FF" stroke-width="10"/>
+
+            <a href="next4.html">
+              <svg x="620" y="250" width="133" height="133" viewBox="0 0 133 133" fill="none">
+                <rect width="133" height="133" rx="66.5" fill="white"/>
+                <path d="M-2.90681e-06 66.5C-2.3319e-06 79.6524 3.90015 92.5095 11.2073 103.445C18.5144 114.381 28.9003 122.905 41.0515 127.938C53.2028 132.971 66.5738 134.288 79.4735 131.722C92.3732 129.156 104.222 122.823 113.523 113.523C122.823 104.222 129.156 92.3732 131.722 79.4735C134.288 66.5737 132.971 53.2028 127.938 41.0515C122.905 28.9003 114.381 18.5144 103.445 11.2073C92.5095 3.90014 79.6524 -3.48172e-06 66.5 -2.90681e-06C48.8688 0.0186136 31.9651 7.03082 19.498 19.498C7.03082 31.9651 0.0186152 48.8688 -2.90681e-06 66.5ZM75.2345 42.4193L95.696 62.8808C96.1717 63.3559 96.549 63.9201 96.8064 64.5411C97.0638 65.1621 97.1963 65.8277 97.1963 66.5C97.1963 67.1722 97.0638 67.8379 96.8064 68.4589C96.549 69.0799 96.1717 69.644 95.696 70.1191L75.2345 90.5807C74.2746 91.5405 72.9728 92.0797 71.6154 92.0797C70.2579 92.0797 68.9561 91.5405 67.9962 90.5807C67.0364 89.6208 66.4971 88.319 66.4971 86.9615C66.4971 85.6041 67.0364 84.3022 67.9962 83.3424L79.7296 71.6154L40.9231 71.6154C39.5664 71.6154 38.2653 71.0764 37.3059 70.1171C36.3466 69.1578 35.8077 67.8567 35.8077 66.5C35.8077 65.1433 36.3466 63.8422 37.3059 62.8829C38.2653 61.9235 39.5664 61.3846 40.9231 61.3846L79.7296 61.3846L67.9962 49.6576C67.0364 48.6977 66.4971 47.3959 66.4971 46.0384C66.4971 44.681 67.0364 43.3792 67.9962 42.4193C68.9561 41.4595 70.2579 40.9202 71.6154 40.9202C72.9728 40.9202 74.2746 41.4595 75.2345 42.4193Z" fill="#98B9FF"/>
+              </svg>
+            </a>
+            </svg>
+            
+      </div>
+  </main>
+
+  <script src="node_modules/flowbite/dist/flowbite.js"></script>
+</body>
+</html>

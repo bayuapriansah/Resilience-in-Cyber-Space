@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resilence</title>
+    <link href="node_modules/flowbite/dist/flowbite.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa';
+            font-size: 22px;
+            animation: fadein 4s;
+            background-image: url("image/bg.svg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Fade in animation */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .handhand {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("image/handhand.svg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: shrink 2s ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes shrink {
+            0% {
+                transform: scale(2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center">
+    <div class="handhand"></div>
+    <main class="w-full max-w-full-xl mx-auto px-4">
+        <div class="flex flex-col items-center justify-center text-center">
+            <h1 class="text-3xl font-bold">Now you can stay protected</h1>
+            <p class="text-sm px-4 py-4 w-full max-w-xl mx-auto">No matter who tries to attack your data, they wouldn’t be able to get through this “wall”, so ensure your 2 factor authentication is setup, so you can be safe!<p>
+            <img class="mx-auto w-80 h-80 object-scale-down" src="image/tabletotp.svg" alt="device">
+            <a href="start1.html" class="text-center text-lg px-8 py-2 bg-blue-400 text-white hover:text-blue-600 rounded-full rounded-full hover:bg-blue-200 relative z-10">Continue</a>
+        </div>
+    </main>
+    <script src="node_modules/flowbite/dist/flowbite.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.handhand').css('opacity', '1'); /* Make the handhand image visible */
+        }, 1000);
+    });
+    </script>
+</body>
+</html>

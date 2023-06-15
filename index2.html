@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      animation: fadeIn 2s ease-in 1;
+    }
+
+    @keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }
+
+    #frame {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    #frame iframe {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    #frame iframe.slide-out {
+      transform: translateX(-50%);
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="frame">
+    <iframe src="index.html"></iframe>
+  </div>
+  <a href="next1.html">Go to page 2</a>
+  <script>
+    $('a').click(function(e) {
+      e.preventDefault();
+      var page = $(this).attr('href');
+      $('#frame iframe').addClass('slide-out');
+      setTimeout(function() {
+        $('#frame iframe').attr('src', page);
+        $('#frame iframe').on('load', function() {
+          $(this).removeClass('slide-out');
+        });
+      }, 500);
+    });
+  </script>
+</body>
+</html>
